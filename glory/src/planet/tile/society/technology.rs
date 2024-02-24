@@ -1,11 +1,11 @@
 use std::collections::HashMap;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Technologies {
     pub established_technology: HashMap<Technology, i32>,
 }
 
-#[derive(Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub enum Technology {
     Primitive,
     Developed

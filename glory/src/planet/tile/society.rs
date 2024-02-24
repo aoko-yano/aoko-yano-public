@@ -7,7 +7,7 @@ use std::default::Default;
 use crate::planet::tile::society::culture::Cultures;
 use crate::planet::tile::society::technology::Technologies;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Society {
     pub population: Population,
     pub cultures: Cultures,
@@ -20,7 +20,7 @@ impl Society {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Population {
     pub number: i32,
 }

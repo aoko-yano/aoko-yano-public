@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct NaturalResources {
     pub existing_natural_resource: HashMap<NaturalResource, i32>,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum NaturalResource {}

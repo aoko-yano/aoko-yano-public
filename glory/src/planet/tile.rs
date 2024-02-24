@@ -1,12 +1,14 @@
 mod society;
 mod environment;
 
+use std::vec::Vec;
 use crate::planet::tile::society::technology::Technology;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Tile {
     society: society::Society,
     environment: environment::Environment,
+    x: usize,
 }
 
 impl Tile {
@@ -14,23 +16,26 @@ impl Tile {
         self.society.put_people(number);
     }
 
-    pub fn tick(&mut self) {
-        self.upgrade_technology();
+    pub fn update_from_past_state(&mut self, past_tiles: &Vec<Tile>, x: usize) {
+        self.upgrade_technology(past_tiles.get(x).unwrap());
     }
 
-    fn upgrade_technology(&mut self) {
-        if self.society.population.number > 0 {
-            if self.society.technologies.established_technology.contains_key(&Technology::Primitive) {
-                if self.society.technologies.established_technology[&Technology::Primitive] < 10 {
-                    *self.society.technologies.established_technology.entry(Technology::Primitive).or_insert(0) += 1;
+    fn upgrade_technology(&mut self, past: &Tile) {
+        let past_population = past.society.population.number;
+        let past_technology = &past.society.technologies.established_technology;
+        let present_technology = &mut self.society.technologies.established_technology;
+        if past_population > 0 {
+            if past_technology.contains_key(&Technology::Primitive) {
+                if past_technology[&Technology::Primitive] < 10 {
+                    *present_technology.entry(Technology::Primitive).or_insert(0) += 1;
                 } else {
-                    self.society.technologies.established_technology.insert(Technology::Developed, 0);
+                    present_technology.insert(Technology::Developed, 0);
                 }
             } else {
-                self.society.technologies.established_technology.insert(Technology::Primitive, 0);
+                present_technology.insert(Technology::Primitive, 0);
             }
         } else {
-            self.society.technologies.established_technology.clear();
+            present_technology.clear();
         }
     }
 
@@ -43,8 +48,9 @@ impl Tile {
     }
 }
 
-pub fn create_tile() -> Tile {
+pub fn create_tile(x: usize) -> Tile {
     Tile {
         society: society::create_empty_society(),
-        environment: environment::create_empty_environment() }
+        environment: environment::create_empty_environment(),
+        x, }
 }

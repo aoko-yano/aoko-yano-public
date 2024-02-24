@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct BiologicalResource {
     pub living_species: HashMap<Species, i32>
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum Species {}

@@ -7,7 +7,7 @@ use crate::planet::tile::environment::biological_resource::BiologicalResource;
 use crate::planet::tile::environment::natural_resource::NaturalResources;
 use crate::planet::tile::environment::nature::Nature;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Environment {
     pub biological_resource: BiologicalResource,
     pub natural_resources: NaturalResources,
