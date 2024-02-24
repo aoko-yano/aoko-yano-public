@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::convert::From;
 use std::default::Default;
 
 #[derive(Debug)]
@@ -68,7 +69,7 @@ fn main() {
     let tile = Tile{ society: Society {
         population: Population { number: 0 },
         cultures: Cultures { established_culture: Default::default() },
-        technologies: Technologies { established_technology: Default::default() },
+        technologies: Technologies { established_technology: HashMap::from([(Technology::Primitive,0)]) },
     }, environment: Environment {
         biological_resource: BiologicalResource { living_species: Default::default() },
         natural_resources: NaturalResources { existing_natural_resource: Default::default() },
