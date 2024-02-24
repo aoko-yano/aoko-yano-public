@@ -9,6 +9,7 @@ pub struct Tile {
     society: society::Society,
     environment: environment::Environment,
     x: usize,
+    y: usize,
 }
 
 impl Tile {
@@ -16,8 +17,8 @@ impl Tile {
         self.society.put_people(number);
     }
 
-    pub fn update_from_past_state(&mut self, past_tiles: &Vec<Tile>, x: usize) {
-        self.upgrade_technology(past_tiles.get(x).unwrap());
+    pub fn update_from_past_state(&mut self, past_tiles: &Vec<Vec<Tile>>) {
+        self.upgrade_technology(past_tiles.get(self.y).unwrap().get(self.x).unwrap());
     }
 
     fn upgrade_technology(&mut self, past: &Tile) {
@@ -48,9 +49,9 @@ impl Tile {
     }
 }
 
-pub fn create_tile(x: usize) -> Tile {
+pub fn create_tile(x: usize, y: usize) -> Tile {
     Tile {
         society: society::create_empty_society(),
         environment: environment::create_empty_environment(),
-        x, }
+        x, y, }
 }
