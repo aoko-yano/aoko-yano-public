@@ -1,9 +1,10 @@
-mod tile;
+pub mod tile;
 
 use std::clone::Clone;
 use std::iter::Iterator;
 use std::vec::Vec;
-use crate::planet::tile::Tile;
+
+use tile::Tile;
 
 #[derive(Clone, Debug)]
 pub struct Planet {

@@ -1,17 +1,34 @@
-pub mod planet;
+pub mod piston;
+pub mod data;
 
-use crate::planet::{create_planet, create_planet_from_past_state};
+use piston_window::*;
+
+use data::create_data;
+use piston::{ArrowKeysState, create_window};
 
 fn main() {
-    let mut history = vec!{ create_planet(10, 10) };
-    history.get_mut(0).unwrap().put_first_people(0, 0);
-    println!("{:?}", history.last());
-    while history.last().unwrap().is_still_survives() {
-        println!("================ Turn: {} ================", history.len());
-        history.push(create_planet_from_past_state(history.last().unwrap()));
-        println!("{:?}", &history.last().unwrap());
-        if history.last().unwrap().is_finished() {
-            break;
+    let mut arrow_keys = ArrowKeysState::new();
+    let mut window: PistonWindow = create_window();
+
+    let mut data = create_data(10, 10);
+    data.put_first_people(0,0);
+    while let Some(e) = window.next() {
+        match e {
+            Event::Loop(Loop::Render(_)) => {
+                window.draw_2d(&e, |c, g, _| {
+                    clear([0.0, 0.0, 0.0, 1.0], g);
+                    data.draw(c, g);
+                });
+            }
+            Event::Loop(Loop::Update(_)) => {
+                data.update();
+            }
+            Event::Input(i, _) => {
+                if let Input::Button(key) = i {
+                    arrow_keys.set(&key);
+                }
+            }
+            _ => {}
         }
     }
 }

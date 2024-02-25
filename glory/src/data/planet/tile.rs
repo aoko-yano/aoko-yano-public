@@ -1,8 +1,9 @@
-mod society;
-mod environment;
+pub mod society;
+pub mod environment;
 
 use std::vec::Vec;
-use crate::planet::tile::society::technology::Technology;
+
+use society::technology::Technology;
 
 #[derive(Clone, Debug)]
 pub struct Tile {

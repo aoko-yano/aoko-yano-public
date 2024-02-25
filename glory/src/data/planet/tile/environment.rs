@@ -1,11 +1,12 @@
-mod biological_resource;
-mod natural_resource;
-mod nature;
+pub mod biological_resource;
+pub mod natural_resource;
+pub mod nature;
 
 use std::default::Default;
-use crate::planet::tile::environment::biological_resource::BiologicalResource;
-use crate::planet::tile::environment::natural_resource::NaturalResources;
-use crate::planet::tile::environment::nature::Nature;
+
+use biological_resource::BiologicalResource;
+use natural_resource::NaturalResources;
+use nature::Nature;
 
 #[derive(Clone, Debug)]
 pub struct Environment {

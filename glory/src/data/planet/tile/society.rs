@@ -1,11 +1,11 @@
-pub(crate) mod technology;
-mod culture;
+pub mod technology;
+pub mod culture;
 
 use std::collections::HashMap;
 use std::default::Default;
 
-use crate::planet::tile::society::culture::Cultures;
-use crate::planet::tile::society::technology::Technologies;
+use culture::Cultures;
+use technology::Technologies;
 
 #[derive(Clone, Debug)]
 pub struct Society {
