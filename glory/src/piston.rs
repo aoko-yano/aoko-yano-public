@@ -10,15 +10,15 @@ const WINDOW_SIZE: Size = Size {
     height: 480.0,
 };
 
-pub struct ArrowKeysState {
+pub struct KeysState {
     up: bool,
     down: bool,
     left: bool,
     right: bool,
 }
-impl ArrowKeysState {
-    pub fn new() -> ArrowKeysState {
-        return ArrowKeysState {
+impl KeysState {
+    pub fn new() -> KeysState {
+        return KeysState {
             up: false,
             down: false,
             left: false,

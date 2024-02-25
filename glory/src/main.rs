@@ -1,17 +1,18 @@
 pub mod piston;
 pub mod data;
+mod update;
 
 use piston_window::*;
 
-use data::create_data;
-use piston::{ArrowKeysState, create_window};
+use update::create_data;
+use piston::{KeysState, create_window};
 
 fn main() {
-    let mut arrow_keys = ArrowKeysState::new();
+    let mut key_state = KeysState::new();
     let mut window: PistonWindow = create_window();
 
     let mut data = create_data(10, 10);
-    data.put_first_people(0,0);
+    update::put_people_to_data(&mut data,&Position{ x: 0, y: 0 },1);
     while let Some(e) = window.next() {
         match e {
             Event::Loop(Loop::Render(_)) => {
@@ -21,11 +22,11 @@ fn main() {
                 });
             }
             Event::Loop(Loop::Update(_)) => {
-                data.update();
+                update::update_data(&mut data, &key_state);
             }
             Event::Input(i, _) => {
                 if let Input::Button(key) = i {
-                    arrow_keys.set(&key);
+                    key_state.set(&key);
                 }
             }
             _ => {}
