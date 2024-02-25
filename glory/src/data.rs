@@ -2,7 +2,9 @@ use piston_window::{Context, G2d};
 
 pub mod planet;
 
+#[derive(PartialEq)]
 pub enum Status {
+    Start,
     Continue,
     GameClear,
     GameOver,
