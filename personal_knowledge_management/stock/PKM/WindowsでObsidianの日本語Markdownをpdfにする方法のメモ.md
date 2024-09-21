@@ -23,6 +23,10 @@
 	- **\\documentclass\[\]{article}** となっている箇所を、**\\documentclass\[\]{ltjsarticle}** にする
 		- **ここがミソ１**
 - texファイルからpdfファイルを生成
-	- **LuaLaTeX**でpdfファイルを生成する
+	- texファイルをTeXworksで開き、**LuaLaTeX**でpdfファイルを生成する
 	- あるいは**lualatexコマンド**にtexファイルを流し込む
 		- **ここがミソ２**
+
+# その他
+
+- タイトルは自分で書く必要がたぶんある
