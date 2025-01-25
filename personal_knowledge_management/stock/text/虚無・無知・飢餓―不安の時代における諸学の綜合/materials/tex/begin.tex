@@ -1,50 +1,64 @@
-\title{虚無・無知・飢餓\\―不安の時代における諸学の綜合―}
-\author{Aoko Yano}
-\date{2024-09-22}
-\usepackage{amsmath,amssymb}
-\usepackage{iftex}
-\usepackage {cancel}
+\documentclass[ % ドキュメントクラス
+  lualatex,%upLaTeXを使う
+  a5paper,%A5サイズにする
+  papersize%紙のサイズがデフォルトと違う場合、PDFにうまく伝える
+]{ltjsbook}
+
+% pdf
 \usepackage {pdfpages}
-\usepackage {fancyhdr}
-\ifPDFTeX
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+%% フォント関連
+\usepackage[T1]{fontenc} % フォントでT1を使うこと
+\usepackage{textcomp} % フォントでTS1を使うこと
+\usepackage[utf8]{inputenc} % ファイルがUTF8であること
+\usepackage{newpxtext,newpxmath} % ローマンと数式の字体をPalatinoに基づいた新PXフォントで
+\usepackage{zi4}%等幅フォントをInconsolataで
+
+% 斜線フォント
+\usepackage {cancel}
+
+%% 囲み枠
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable} % ページをまたいで分割できるように
+\tcbuselibrary{skins} % さまざまな skin を準備
+\tcbuselibrary{theorems} % 定理環境
+
+% 枠の定義
+\newtcolorbox{summary}{
+sharp corners, % 角を丸くしない
+boxrule=0pt, % ボックスの罫線なし
+colback=green!20!white, % ボックスの背景色
+}
+
+\newtcolorbox{note}[1]{
+breakable, % ページをまたいでボックスを分割
+before skip=20pt plus 2pt minus 2pt, % ボックスの前の空き
+after skip=20pt plus 2pt minus 2pt, % ボックスの後の空き
+boxrule=0.4pt, % ボックスの罫線の太さ
+colframe=black!95, % フレームの色
+colback=white!95, % ボックスの背景色
+fonttitle=\gtfamily\bfseries, % タイトルのフォント
+title=#1 % タイトルのテキスト
+}
+
+% エピグラフ
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{.6\textwidth}
+
+% 参考文献（本文中）
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\usepackage{bookmark}
+
+%% 索引
+\usepackage{makeidx}
+\makeindex
+
+% URL
+\usepackage{hyperref}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
+
 \begin{document}
-\maketitle
