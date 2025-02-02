@@ -1,4 +1,4 @@
-## 人間の行為
+# 人間の行為
 
 \begin{note}{この小節で扱う命題}
   \begin{itemize}
