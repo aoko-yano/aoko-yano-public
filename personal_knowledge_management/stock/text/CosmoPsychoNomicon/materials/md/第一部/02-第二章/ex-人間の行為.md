@@ -1,6 +1,6 @@
 # 人間の行為
 
-\begin{note}{この小節で扱う命題}
+\begin{note}{}
   \begin{itemize}
     \tightlist
     \item{\#ex.1}対象aの顕現に対する主体による防衛としての葛藤の解消は、自我とリアリティに対する修正を伴う。
